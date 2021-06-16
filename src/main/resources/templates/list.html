@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+</head>
+<body>
+List Page
+
+<div th:each="user : ${userLIst}">
+    <div><a  th:text="*{user.username}" th:href="@{/user/edit/__${user.id}__}"></a></div><br>
+    <div th:text="*{user.password}"></div><br>
+    <div th:text="*{user.firstName}"></div><br>
+    <div th:text="*{user.lastName}"></div><br>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View</title>
+</head>
+<body>
+View Page
+    <div th:text="'Name: ' + ${userById.firstName}"></div>
+    <div th:text="'Last name: ' + ${userById.lastName}"></div>
+    <div th:text="'Login: ' + ${userById.username}"></div>
+    <div th:text="'Password: ' + ${userById.password}"></div>
+    <div th:text="'Role: ' + ${userById.role}"></div>
+    <div th:text="'Id: ' + ${userById.id}"></div>
+    <div th:text="'Status: '  + ${userById.status}"></div>
+    <div th:text="'Created at: '  + ${userById.createdAt}"></div>
+</body>
+</html>

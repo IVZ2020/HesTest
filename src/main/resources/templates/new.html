@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New</title>
+</head>
+<body>
+New Page
+
+<form method="post" th:action="@{/user/new}" th:object="${newUser}">
+    <div><input th:type="text" th:field="*{username}" th:placeholder="Login"></div>
+    <div><input th:type="text" th:field="*{password}" th:placeholder="Password"> </div>
+    <div><input th:type="text" th:field="*{firstName}" th:placeholder="FirstName"> </div>
+    <div><input th:type="text" th:field="*{lastName}" th:placeholder="LastName"> </div>
+    <input type="submit" value="Create">
+</form>
+</body>
+</html>

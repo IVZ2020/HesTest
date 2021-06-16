@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+Edit Page
+
+<h3>Input new parameters</h3>
+
+<form method="post" th:action="@{/user/edit/__${editUser.id}__}" th:object="${editableUser}">
+    <input th:type="text" placeholder="First name" th:field="*{firstName}"><br>
+    <input th:type="text" placeholder="Last name" th:field="*{lastName}"><br>
+    <input th:type="text" placeholder="Login" th:field="*{username}"><br>
+    <input th:type="text" placeholder="Password" th:field="*{password}"><br>
+    <select name="role" th:field="*{role}">
+        <option th:each="role : ${T(test.hes.demo.entity.Role).values()}"
+                th:text="${role.displayValue}"
+                th:value="${role}">
+        </option>
+    </select>
+    <select name="st" th:field="*{st}">
+        <option th:each="stat : ${T(test.hes.demo.entity.Status).values()}"
+                th:text="${stat.displayValue}"
+                th:value="${stat}">
+        </option>
+    </select>
+    <input type="submit" value="Change">
+</form>
+
+</body>
+</html>
