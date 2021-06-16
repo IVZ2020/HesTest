@@ -1,3 +1,8 @@
+/**
+ * Version 1.1
+ * Main entity @UserAccount
+ **/
+
 package test.hes.demo.entity;
 
 import lombok.AllArgsConstructor;
