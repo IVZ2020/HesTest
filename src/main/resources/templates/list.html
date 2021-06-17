@@ -9,12 +9,16 @@
 <body>
 List Page
 
+
 <div th:each="user : ${userLIst}">
-    <div><a  th:text="*{user.username}" th:href="@{/user/edit/__${user.id}__}"></a></div><br>
-    <div th:text="*{user.password}"></div><br>
-    <div th:text="*{user.firstName}"></div><br>
-    <div th:text="*{user.lastName}"></div><br>
+    <div><a  th:text="*{user.username}" th:href="@{/user/edit/__${user.id}__}"></a></div>
+    <div th:text="*{user.password}"></div>
+    <div th:text="*{user.firstName}"></div>
+    <div th:text="*{user.lastName}"></div>
+    <div>________________</div>
 </div>
+
+<p><a href="/user/new">Create user</a></p>
 
 </body>
 </html>

@@ -10,21 +10,36 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name="user_acc")
+@Table(name="users")
 public class UserAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @NotNull
+    @NotEmpty
+    @Size(min = 3, max = 16)
     private String username;
+    @NotNull
+    @NotEmpty
+    @Size(min = 3, max = 16)
     private String password;
+    @NotNull
+    @NotEmpty
+    @Size(min = 1, max = 16)
     private String firstName;
+    @NotNull
+    @NotEmpty
+    @Size(min = 1, max = 16)
     private String lastName;
     @Enumerated
     private Role role;

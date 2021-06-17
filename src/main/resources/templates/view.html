@@ -12,9 +12,13 @@ View Page
     <div th:text="'Last name: ' + ${userById.lastName}"></div>
     <div th:text="'Login: ' + ${userById.username}"></div>
     <div th:text="'Password: ' + ${userById.password}"></div>
-    <div th:text="'Role: ' + ${userById.role}"></div>
+    <div th:text="'Role: ' + ${userById.role.displayValue}"></div>
     <div th:text="'Id: ' + ${userById.id}"></div>
-    <div th:text="'Status: '  + ${userById.status}"></div>
+    <div th:text="'Status: '  + ${userById.st.displayValue}"></div>
     <div th:text="'Created at: '  + ${userById.createdAt}"></div>
+
+    <p><a th:href="@{/user/edit/__${userById.id}__}" th:text="Edit"></a></p>
+    <p><a href="/user/new">Create user</a></p>
+    <p><a href="/user/list">All users</a></p>
 </body>
 </html>

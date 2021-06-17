@@ -2,10 +2,13 @@ package test.hes.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import test.hes.demo.entity.UserAccount;
 import test.hes.demo.service.UserService;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping(path = "/user")
@@ -13,14 +16,6 @@ public class UserController {
 
     @Autowired
     UserService userService;
-
-    @GetMapping(path = "/login")
-    public ModelAndView showLoginPage (
-                            ModelAndView modelAndView
-    ) {
-        modelAndView.setViewName("login");
-        return modelAndView;
-    }
 
     @GetMapping(path = "/list")
     public ModelAndView listAllUsers (
@@ -43,7 +38,7 @@ public class UserController {
 
     @GetMapping(path = "/new")
     public ModelAndView createNewUserGet (
-//                                            @ModelAttribute("newUser") UserAccount userAccount,
+//                                          @ModelAttribute("newUser") UserAccount userAccount,
                                             ModelAndView modelAndView
     ) {
         modelAndView.addObject("newUser", new UserAccount());
@@ -53,11 +48,16 @@ public class UserController {
 
     @PostMapping(path = "/new")
     public ModelAndView createNewUserPost (
-                                            @ModelAttribute("newUser") UserAccount userAccount,
+                                            @ModelAttribute("newUser") @Valid UserAccount userAccount,
+                                            BindingResult bindingResult,
                                             ModelAndView modelAndView
     ) {
-        userService.createUser(userAccount);
-        modelAndView.setViewName("new");
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("new");
+        } else {
+            userService.createUser(userAccount);
+            modelAndView.setViewName("redirect:/user/view/" + userAccount.getId());
+        }
         return modelAndView;
     }
 
@@ -76,11 +76,16 @@ public class UserController {
     @PostMapping(path = "/edit/{id}")
     public ModelAndView updateUser (
                                 @PathVariable("id") Long id,
-                                @ModelAttribute("editableUser") UserAccount editableUser,
+                                @ModelAttribute("editableUser") @Valid UserAccount editableUser,
+                                BindingResult bindingResult,
                                 ModelAndView modelAndView
     ) {
-        userService.updateUserById(id, editableUser);
-        modelAndView.setViewName("redirect:/user/list");
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("/user/view/" + id);
+        } else {
+            modelAndView.setViewName("redirect:/user/list");
+            userService.updateUserById(id, editableUser);
+        }
         return modelAndView;
     }
 
